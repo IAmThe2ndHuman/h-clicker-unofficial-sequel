@@ -13,6 +13,7 @@ class ClickerUI extends StatefulWidget {
 class _ClickerUIState extends State<ClickerUI> {
 
   int hCount = 0;
+  TextStyle hStyle = kHStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +31,28 @@ class _ClickerUIState extends State<ClickerUI> {
               Text(hCount.toString(), style: kHCountNumber,)
             ],
           ),
-          FlatButton(
-            onPressed: () {
+          GestureDetector(
+            onTap: () {
               setState(() {
                 hCount++;
               });
             },
-            child: Text("H", style: kHStyle,),
+            onTapDown: (_) {
+              setState(() {
+                hStyle = TextStyle(color: Colors.blue[900], fontSize: 200);
+              });
+            },
+            onTapUp: (_) {
+              setState(() {
+                hStyle = kHStyle;
+              });
+            },
+            onTapCancel: () {
+              setState(() {
+                hStyle = kHStyle;
+              });
+            },
+            child: Center(child: Text("H", style: hStyle,)),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

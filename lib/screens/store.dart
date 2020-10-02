@@ -4,6 +4,7 @@ import 'package:h_clicker_but_i_try_to_make_it/constants.dart';
 class StorePage extends StatelessWidget {
 
   final int hNumber;
+
   StorePage({this.hNumber});
 
   @override
@@ -12,18 +13,32 @@ class StorePage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Store"),
         actions: [
-          Container(
-            margin: EdgeInsets.all(10),
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: Center(child: Row(
-              children: [
-                Text("Current balance: "),
-                Text(hNumber.toString(), style: kHBalance,)
-              ],
-            )),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(999),
-              color: kHCommonAccentColor,
+          Builder(
+            builder: (context) => Container(
+              margin: EdgeInsets.all(10),
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Center(child: Row(
+                children: [
+                  Text("Current balance: "),
+                  Text(hNumber.toString(), style: kHBalance,),
+                  VerticalDivider(thickness: 2,),
+                  IconButton(
+                    icon: Icon(Icons.star, size: 20,),
+                    splashRadius: 1,
+                    onPressed: () {
+                      final snackBar = SnackBar(
+                        content: Text('this button is haram and doesnt work yet :pensive:',),
+                      );
+
+                      Scaffold.of(context).showSnackBar(snackBar);
+                    },
+                  )
+                ],
+              )),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(999),
+                color: kHCommonAccentColor,
+              ),
             ),
           )
         ],
